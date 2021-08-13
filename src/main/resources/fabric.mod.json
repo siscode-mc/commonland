@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "commonland",
+  "version": "${version}",
+
+  "name": "CommonLand",
+  "description": "CommonLand is a minimalist, moderation-focused land claim mod, inspired by feudalism",
+  "authors": [
+    "roridev"
+  ],
+  "contact": {
+    "homepage": "https://github.com/siscode-mc/commonland",
+    "issues": "https://github.com/siscode-mc/commonland/issues",
+    "sources": "https://github.com/siscode-mc/commonland"
+  },
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "commonland.CommonLand"
+    ]
+  },
+  "mixins": [
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "minecraft": "1.17.x"
+  }
+}
