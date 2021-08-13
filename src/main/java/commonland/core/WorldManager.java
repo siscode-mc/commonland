@@ -32,6 +32,14 @@ public class WorldManager {
         return position.containsKey(pos);
     }
 
+    public boolean registerNewPosition(UUID claim, ChunkPos pos) {
+        if(isClaimed(pos)) {
+            return false;
+        }
+        position.put(pos, claim);
+        return true;
+    }
+
     private void registerNewMember(UUID player) {
         membership.put(player, new HashSet<>());
         //TODO: some IO madness for data persistency
