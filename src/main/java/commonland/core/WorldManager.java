@@ -40,6 +40,14 @@ public class WorldManager {
         return true;
     }
 
+    public boolean registerNewClaim(Claim claim){
+        if(claims.containsKey(claim.getClaimId())) {
+            return false;
+        }
+        claims.put(claim.getClaimId(), claim);
+        return true;
+    }
+
     private void registerNewMember(UUID player) {
         membership.put(player, new HashSet<>());
         //TODO: some IO madness for data persistency
