@@ -40,6 +40,14 @@ public class WorldManager {
         return true;
     }
 
+    public boolean unregisterPosition(ChunkPos pos) {
+        if(!isClaimed(pos)){
+            return false;
+        }
+        position.remove(pos);
+        return true;
+    }
+
     public boolean registerNewClaim(Claim claim){
         if(claims.containsKey(claim.getClaimId())) {
             return false;
