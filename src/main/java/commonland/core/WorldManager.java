@@ -53,6 +53,11 @@ public class WorldManager {
             return false;
         }
         claims.put(claim.getClaimId(), claim);
+
+        claim.getChunks().forEach(chunk -> {
+            registerNewPosition(claim.getClaimId(),chunk);
+        });
+
         return true;
     }
 
