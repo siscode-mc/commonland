@@ -39,7 +39,7 @@ class Claim (val parent : Claim?, val owner : UUID) : Space {
 
         //Since claims can overlap with components, but can't overlap with claims
         //Returning here should be fine.
-        return false
+        return this.components.any { it.overlaps(other) }
     }
 
     // Note: A claim can only modify its own shape based on components.
