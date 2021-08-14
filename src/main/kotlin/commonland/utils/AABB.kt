@@ -12,3 +12,11 @@ fun Box.combine(other: Box) = Box(
     max(this.maxY, other.maxY),
     max(this.maxZ, other.maxZ)
 )
+
+fun Box.inside(parent: Box) : Boolean {
+    if(parent.minX < this.minX && parent.maxX > this.maxX)
+        if(parent.minY < this.minY && parent.maxY > this.maxY)
+            if(parent.minZ < this.minZ && parent.maxZ > this.maxZ)
+                return true
+    return false
+}
