@@ -1,6 +1,8 @@
 package commonland.utils
 
+import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
+import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 
@@ -19,4 +21,13 @@ fun Box.inside(parent: Box) : Boolean {
        && parent.minZ < this.minZ && parent.maxZ > this.maxZ)
         return true
     return false
+}
+
+fun Box.iterBlocks() = sequence {
+    val xs = floor(this@iterBlocks.minX).toInt()..Math.ceil(this@iterBlocks.maxX).toInt()
+    val ys = floor(this@iterBlocks.minY).toInt()..Math.ceil(this@iterBlocks.maxY).toInt()
+    val zs = floor(this@iterBlocks.minZ).toInt()..Math.ceil(this@iterBlocks.maxZ).toInt()
+    for (x in xs) for (y in ys) for (z in zs) {
+        this.yield(BlockPos(x, y, z))
+    }
 }
