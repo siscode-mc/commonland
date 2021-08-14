@@ -17,7 +17,7 @@ class Claim (val parent : Claim?, val owner : UUID) : Space {
         private set
 
     override fun contains(pos: BlockPos): Boolean {
-        TODO("Not yet implemented")
+        return components.get(pos) != null
     }
 
     override fun overlaps(aabb: Box): Boolean {
