@@ -25,7 +25,20 @@ class Claim (val parent : Claim?, val owner : UUID) : Space {
     }
 
     override fun overlaps(other: Space): Boolean {
-        TODO("Not yet implemented")
+        if (other is Claim) {
+            val otherOverlap = other.components.getOverlapping(this.boundingBox)
+            val thisOverlap = this.components.getOverlapping(other.boundingBox)
+            for (itemA in otherOverlap){
+                for(itemB in thisOverlap) {
+                    if (itemA.overlaps(itemB)) return true;
+                }
+            }
+            return false
+        }
+
+        //Since claims can overlap with components, but can't overlap with claims
+        //Returning here should be fine.
+        return false
     }
 
     private fun calculateAABB() : Box {
