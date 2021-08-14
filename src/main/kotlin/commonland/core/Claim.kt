@@ -21,7 +21,7 @@ class Claim (val parent : Claim?, val owner : UUID) : Space {
     }
 
     override fun overlaps(aabb: Box): Boolean {
-        TODO("Not yet implemented")
+        return components.getOverlapping(aabb).isNotEmpty()
     }
 
     override fun overlaps(other: Space): Boolean {
