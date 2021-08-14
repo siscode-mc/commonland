@@ -4,6 +4,7 @@ import commonland.core.components.ClaimComponent
 import commonland.core.containers.NaiveSpacialList
 import commonland.core.containers.emptySpacialContainer
 import commonland.utils.combine
+import commonland.utils.inside
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
 import java.util.*
@@ -39,6 +40,19 @@ class Claim (val parent : Claim?, val owner : UUID) : Space {
         //Since claims can overlap with components, but can't overlap with claims
         //Returning here should be fine.
         return false
+    }
+
+    fun addChild(claim: Claim) : Boolean {
+        // Rules for sub-claim registry:
+        // The sub-claim must be inside the current claim completely
+        // Note: This currently uses naive AABB logic
+        if(!claim.boundingBox.inside(this.boundingBox)) return false
+
+        // There must not be any overlap with other claims on the same level of hierarchy
+        val overlaps = children.getOverlapping(claim)
+        if(overlaps.isNotEmpty()) return false
+        children.add(claim)
+        return true
     }
 
     private fun calculateAABB() : Box {
