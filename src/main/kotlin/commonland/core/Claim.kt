@@ -13,8 +13,8 @@ class Claim (val parent : Claim?, val owner : UUID) : Space {
     val children: NaiveSpacialList<Claim> = emptySpacialContainer()
     val components: NaiveSpacialList<ClaimComponent> = emptySpacialContainer()
 
-    override val boundingBox: Box
-        get() = TODO("Not yet implemented")
+    override var boundingBox: Box = calculateAABB()
+        private set
 
     override fun contains(pos: BlockPos): Boolean {
         TODO("Not yet implemented")
