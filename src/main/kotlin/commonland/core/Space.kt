@@ -38,6 +38,7 @@ interface Space {
      * it should be specialised as much as possible
      */
     fun overlaps(aabb: Box) : Boolean {
+        if(!this.boundingBox.intersects(aabb)) return false
         for (pos in this.boundingBox.intersection(aabb).iterBlocks()) {
             if (this.contains(pos)) return true
         }
@@ -49,6 +50,7 @@ interface Space {
      * it should be specialised as much as possible
      */
     fun overlaps(other: Space) : Boolean {
+        if(!this.boundingBox.intersects(other.boundingBox)) return false
         for (pos in this.boundingBox.intersection(other.boundingBox).iterBlocks()) {
             if (this.contains(pos) && other.contains(pos)) return true
         }
