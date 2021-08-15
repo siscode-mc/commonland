@@ -9,9 +9,8 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
 import java.util.*
 
-class Claim (val parent : Claim?, val owner : UUID) : Space {
-    val members: Set<UUID> = mutableSetOf()
-    val children: SpacialContainer<Claim> = emptySpacialContainer()
+class Claim (owner : UUID, val parent : AbstractClaim) : AbstractClaim(owner) {
+
     val components: SpacialContainer<ClaimComponent> = emptySpacialContainer()
 
     override var boundingBox: Box = calculateAABB()
@@ -52,17 +51,8 @@ class Claim (val parent : Claim?, val owner : UUID) : Space {
         TODO("Not Implemented")
     }
 
-    fun addChild(claim: Claim) : Boolean {
-        // Rules for sub-claim registry:
-        // The sub-claim must be inside the current claim completely
-        // Note: This currently uses naive AABB logic
-        if(!claim.boundingBox.inside(this.boundingBox)) return false
-
-        // There must not be any overlap with other claims on the same level of hierarchy
-        val overlaps = children.getOverlapping(claim)
-        if(overlaps.isNotEmpty()) return false
-        children.add(claim)
-        return true
+    override fun notifyChildChanged(child: Claim) {
+        TODO("Not Implemented")
     }
 
     private fun calculateAABB() : Box {
