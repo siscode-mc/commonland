@@ -46,9 +46,18 @@ class Claim (owner : UUID, val parent : AbstractClaim) : AbstractClaim(owner) {
         // Rules for component registry:
         // - A component must only be added if:
         //    - It overlaps with the existing claim, if any exists (expansion)
+        if (!this.overlaps(component)) return false
+
         //    - It is inside the parent claim completely (partitioning)
+        if (!component.boundingBox.inside(this.parent.boundingBox)) return false
+        //TODO: specific smart Space.inside function that's specified for Claim.
+
         //    - It does not overlap any sibling claims (conflict)
-        TODO("Not Implemented")
+        if (this.parent.children.getOverlapping(component).any {it != this}) return false
+
+        components.add(component)
+        boundingBox = calculateAABB()
+        return true
     }
 
     override fun notifyChildChanged(child: Claim) {
