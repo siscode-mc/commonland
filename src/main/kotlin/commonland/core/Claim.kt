@@ -1,7 +1,7 @@
 package commonland.core
 
 import commonland.core.components.ClaimComponent
-import commonland.core.containers.NaiveSpacialList
+import commonland.core.containers.SpacialContainer
 import commonland.core.containers.emptySpacialContainer
 import commonland.utils.combine
 import commonland.utils.inside
@@ -11,8 +11,8 @@ import java.util.*
 
 class Claim (val parent : Claim?, val owner : UUID) : Space {
     val members: Set<UUID> = mutableSetOf()
-    val children: NaiveSpacialList<Claim> = emptySpacialContainer()
-    val components: NaiveSpacialList<ClaimComponent> = emptySpacialContainer()
+    val children: SpacialContainer<Claim> = emptySpacialContainer()
+    val components: SpacialContainer<ClaimComponent> = emptySpacialContainer()
 
     override var boundingBox: Box = calculateAABB()
         private set

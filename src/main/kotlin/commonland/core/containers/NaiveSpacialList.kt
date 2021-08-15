@@ -47,6 +47,3 @@ class NaiveSpacialList<T> : SpacialContainer<T>
         list.filter { it.overlaps(space) }
 
 }
-
-fun <T> emptySpacialContainer() where T : Space = NaiveSpacialList<T>()
-fun <T> spacialSetOf(vararg args : T) where T : Space = NaiveSpacialList<T>(args.toList())

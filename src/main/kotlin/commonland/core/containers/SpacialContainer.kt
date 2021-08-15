@@ -11,3 +11,9 @@ interface SpacialContainer<T> : Collection<T> where T : Space {
     fun getOverlapping(aabb : Box) : List<T>
     fun getOverlapping(space: Space) : List<T>
 }
+
+fun <T> emptySpacialContainer() : SpacialContainer<T>
+    where T : Space = NaiveSpacialList()
+fun <T> spacialContainerOf(vararg args : T) : SpacialContainer<T>
+    where T : Space = NaiveSpacialList(args.toList())
+
