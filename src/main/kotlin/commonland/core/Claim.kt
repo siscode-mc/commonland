@@ -45,14 +45,10 @@ class Claim (val parent : Claim?, val owner : UUID) : Space {
     // Note: A claim can only modify its own shape based on components.
     fun addComponent(component: ClaimComponent) : Boolean {
         // Rules for component registry:
-        //   - A component must only be added if:
-        //       - It is adjacent to the existing aabb (expansion)
-        //       - It is inside the parent claim completely (partitioning)
-        //   - A component cannot be added if:
-        //       - It overlaps with foreign claims (conflict)
-        //   - A claim is considered foreign if:
-        //       - Their parents is the same (internal conflict)
-        //       - Their parents diverge (external conflict)
+        // - A component must only be added if:
+        //    - It overlaps with the existing claim, if any exists (expansion)
+        //    - It is inside the parent claim completely (partitioning)
+        //    - It does not overlap any sibling claims (conflict)
         TODO("Not Implemented")
     }
 
