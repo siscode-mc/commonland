@@ -19,4 +19,8 @@ class WorldClaim(owner: UUID, val world: World) : AbstractClaim(owner) {
                     30_000_000.0)
 
     override fun contains(pos: BlockPos): Boolean = true
+
+    fun getClaimsAt(pos: BlockPos) : List<Claim> {
+        TODO("Not yet implemented")
+    }
 }
