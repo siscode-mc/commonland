@@ -46,4 +46,6 @@ class NaiveSpacialList<T> : SpacialContainer<T>
     override fun getOverlapping(space: Space): List<T> =
         list.filter { it.overlaps(space) }
 
+    override fun notifyChanged(item: T) { return }
+
 }
