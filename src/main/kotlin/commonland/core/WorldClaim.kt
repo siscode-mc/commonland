@@ -21,6 +21,12 @@ class WorldClaim(owner: UUID, val world: World) : AbstractClaim(owner) {
     override fun contains(pos: BlockPos): Boolean = true
 
     fun getClaimsAt(pos: BlockPos) : List<Claim> {
-        TODO("Not yet implemented")
+        val list = mutableListOf<Claim>()
+        var nextChild = this.children.get(pos)
+        while (nextChild != null) {
+            list.add(nextChild)
+            nextChild = nextChild.children.get(pos)
+        }
+        return list
     }
 }
