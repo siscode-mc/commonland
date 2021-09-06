@@ -61,7 +61,8 @@ class Claim (owner : UUID, val parent : AbstractClaim) : AbstractClaim(owner) {
     }
 
     override fun notifyChildChanged(child: Claim) {
-        TODO("Not Implemented")
+        this.children.notifyChanged(child)
+        this.parent.children.notifyChanged(this)
     }
 
     private fun calculateAABB() : Box {
