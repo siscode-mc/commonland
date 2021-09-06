@@ -10,6 +10,7 @@ interface SpacialContainer<T> : Collection<T> where T : Space {
     fun remove(item: T)
     fun getOverlapping(aabb : Box) : List<T>
     fun getOverlapping(space: Space) : List<T>
+    fun notifyChanged(item :T) : Unit
 }
 
 fun <T> emptySpacialContainer() : SpacialContainer<T>
