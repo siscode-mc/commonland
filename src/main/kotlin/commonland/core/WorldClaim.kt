@@ -7,7 +7,7 @@ import java.util.*
 
 class WorldClaim(owner: UUID, val world: World) : AbstractClaim(owner) {
     override fun notifyChildChanged(child: Claim) {
-        TODO("Not yet implemented")
+        this.children.notifyChanged(child)
     }
 
     override val boundingBox: Box
