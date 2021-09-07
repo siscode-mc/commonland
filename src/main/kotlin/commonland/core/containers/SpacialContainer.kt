@@ -11,6 +11,7 @@ interface SpacialContainer<T> : Collection<T> where T : Space {
     fun getOverlapping(aabb : Box) : List<T>
     fun getOverlapping(space: Space) : List<T>
     fun notifyChanged(item :T) : Unit
+    fun shouldSerializeInSeparateFile() : Boolean
 }
 
 fun <T> emptySpacialContainer() : SpacialContainer<T>
