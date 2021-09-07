@@ -48,4 +48,8 @@ class NaiveSpacialList<T> : SpacialContainer<T>
 
     override fun notifyChanged(item: T) { return }
 
+    override fun shouldSerializeInSeparateFile(): Boolean {
+        return false
+    }
+
 }
