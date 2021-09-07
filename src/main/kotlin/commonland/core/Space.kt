@@ -56,4 +56,8 @@ interface Space {
         }
         return false
     }
+
+    fun getSizeHint() : Int {
+        return 0
+    }
 }
