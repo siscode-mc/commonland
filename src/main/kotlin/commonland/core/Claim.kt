@@ -69,4 +69,8 @@ class Claim (owner : UUID, val parent : AbstractClaim) : AbstractClaim(owner) {
         return components.fold(components.first().boundingBox) { it,other -> it.combine(other.boundingBox) }
     }
 
+    fun shouldSerializeInSeparateFile() : Boolean {
+        return children.shouldSerializeInSeparateFile()
+    }
+
 }
